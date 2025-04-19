@@ -15,4 +15,6 @@
 - 集成 Qt ：提供跨平台 GUI 支持  
 - 参数可视化：实时调节渲染参数并观察效果  
 - 光栅化 + 光线追踪混合渲染：实现柔和阴影和精确反射  
-- 融入自研 D3DEngine：在自有引擎中复用光追模块 
+- 融入自研 D3DEngine：在自有引擎中复用光追模块
+- 加入英伟达DLSS4 (only support in RTX40x)
+- 试图继承MFG(Multiframe generation)
