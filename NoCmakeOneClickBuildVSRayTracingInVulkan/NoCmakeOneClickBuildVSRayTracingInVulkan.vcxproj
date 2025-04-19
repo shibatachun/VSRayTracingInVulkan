@@ -129,6 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Assets\CornellBox.cpp" />
+    <ClCompile Include="src\Assets\Material.cpp" />
+    <ClCompile Include="src\Assets\Scene.cpp" />
     <ClCompile Include="src\VulKan\Application.cpp" />
     <ClCompile Include="src\VulKan\Buffer.cpp" />
     <ClCompile Include="src\VulKan\CommandBuffers.cpp" />
@@ -172,8 +175,17 @@
     <ClCompile Include="src\VulKan\SwapChain.cpp" />
     <ClCompile Include="src\VulKan\Version.cpp" />
     <ClCompile Include="src\VulKan\Window.cpp" />
+    <ClCompile Include="src\Assets\Texture.cpp" />
+    <ClCompile Include="src\Assets\TextureImage.cpp" />
+    <ClCompile Include="src\Assets\UniformBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Assets\CornellBox.h" />
+    <ClInclude Include="src\Assets\Material.h" />
+    <ClInclude Include="src\Assets\Scene.h" />
+    <ClInclude Include="src\Assets\Procedural.hpp" />
+    <ClInclude Include="src\Assets\Sphere.hpp" />
+    <ClInclude Include="src\Assets\Vertex.hpp" />
     <ClInclude Include="src\VulKan\Application.h" />
     <ClInclude Include="src\VulKan\Buffer.h" />
     <ClInclude Include="src\VulKan\CommandBuffers.h" />
@@ -223,6 +235,9 @@
     <ClInclude Include="src\VulKan\SwapChain.h" />
     <ClInclude Include="src\VulKan\Version.h" />
     <ClInclude Include="src\VulKan\Window.h" />
+    <ClInclude Include="src\Assets\Texture.h" />
+    <ClInclude Include="src\Assets\TextureImage.h" />
+    <ClInclude Include="src\Assets\UniformBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
