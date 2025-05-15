@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -102,13 +102,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependency;$(SolutionDir)Dependency\Vulkan\Include;$(SolutionDir)Dependency\glm;$(SolutionDir)Dependency\GLFW\include;E:\tool\Boost\include\boost-1_88;E:\tool\imgui-1.91.9b;E:\tool\tinyobjloader-release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependency\Vulkan\Lib;$(SolutionDir)Dependency\GLFW\lib_win64;E:\tool\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -120,19 +122,31 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependency;$(SolutionDir)Dependency\Vulkan\Include;$(SolutionDir)Dependency\glm;$(SolutionDir)Dependency\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependency\Vulkan\Lib;$(SolutionDir)Dependency\GLFW\lib_win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Assets\CornellBox.cpp" />
-    <ClCompile Include="src\Assets\Material.cpp" />
+    <ClCompile Include="src\Assets\Model.cpp" />
     <ClCompile Include="src\Assets\Scene.cpp" />
-    <ClCompile Include="src\VulKan\Application.cpp" />
+    <ClCompile Include="src\Assets\tiny_obj_loader.cc" />
+    <ClCompile Include="src\imgui\imgui.cpp" />
+    <ClCompile Include="src\imgui\imgui_demo.cpp" />
+    <ClCompile Include="src\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\imgui\imgui_impl_vulkan.cpp" />
+    <ClCompile Include="src\imgui\imgui_tables.cpp" />
+    <ClCompile Include="src\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Utilities\Console.cpp" />
+    <ClCompile Include="src\Utilities\StbImage.cpp" />
+    <ClCompile Include="src\VulKan\ApplicationVulkan.cpp" />
     <ClCompile Include="src\VulKan\Buffer.cpp" />
     <ClCompile Include="src\VulKan\CommandBuffers.cpp" />
     <ClCompile Include="src\VulKan\CommandPool.cpp" />
@@ -152,6 +166,7 @@
     <ClCompile Include="src\VulKan\ImageView.cpp" />
     <ClCompile Include="src\VulKan\Instance.cpp" />
     <ClCompile Include="src\VulKan\PipelineLayout.cpp" />
+    <ClCompile Include="src\VulKan\RayTracing\BottomLevelGeometry.cpp" />
     <ClCompile Include="src\VulKan\RenderPass.cpp" />
     <ClCompile Include="src\VulKan\Sampler.cpp" />
     <ClCompile Include="src\VulKan\Semaphore.cpp" />
@@ -173,71 +188,130 @@
     <ClCompile Include="src\VulKan\Strings.cpp" />
     <ClCompile Include="src\VulKan\Surface.cpp" />
     <ClCompile Include="src\VulKan\SwapChain.cpp" />
-    <ClCompile Include="src\VulKan\Version.cpp" />
+    <ClCompile Include="src\VulKan\Vulkan.cpp" />
     <ClCompile Include="src\VulKan\Window.cpp" />
     <ClCompile Include="src\Assets\Texture.cpp" />
     <ClCompile Include="src\Assets\TextureImage.cpp" />
     <ClCompile Include="src\Assets\UniformBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Assets\CornellBox.h" />
-    <ClInclude Include="src\Assets\Material.h" />
-    <ClInclude Include="src\Assets\Scene.h" />
+    <ClInclude Include="src\Assets\CornellBox.hpp" />
+    <ClInclude Include="src\Assets\Material.hpp" />
+    <ClInclude Include="src\Assets\Model.hpp" />
     <ClInclude Include="src\Assets\Procedural.hpp" />
+    <ClInclude Include="src\Assets\Scene.hpp" />
     <ClInclude Include="src\Assets\Sphere.hpp" />
+    <ClInclude Include="src\Assets\Texture.hpp" />
+    <ClInclude Include="src\Assets\TextureImage.hpp" />
+    <ClInclude Include="src\Assets\tiny_obj_loader.h" />
+    <ClInclude Include="src\Assets\UniformBuffer.hpp" />
     <ClInclude Include="src\Assets\Vertex.hpp" />
-    <ClInclude Include="src\VulKan\Application.h" />
-    <ClInclude Include="src\VulKan\Buffer.h" />
-    <ClInclude Include="src\VulKan\CommandBuffers.h" />
-    <ClInclude Include="src\VulKan\CommandPool.h" />
-    <ClInclude Include="src\VulKan\DebugUtils.h" />
-    <ClInclude Include="src\VulKan\DebugUtilsMessenger.h" />
-    <ClInclude Include="src\VulKan\DepthBuffer.h" />
-    <ClInclude Include="src\VulKan\DescriptorBinding.h" />
-    <ClInclude Include="src\VulKan\DescriptorPool.h" />
-    <ClInclude Include="src\VulKan\DescriptorSetLayout.h" />
-    <ClInclude Include="src\VulKan\DescriptorSetManager.h" />
-    <ClInclude Include="src\VulKan\DescriptorSets.h" />
-    <ClInclude Include="src\VulKan\Device.h" />
-    <ClInclude Include="src\VulKan\DeviceMemory.h" />
-    <ClInclude Include="src\VulKan\Fence.h" />
-    <ClInclude Include="src\VulKan\FrameBuffer.h" />
-    <ClInclude Include="src\VulKan\GraphicsPipeline.h" />
-    <ClInclude Include="src\VulKan\Image.h" />
-    <ClInclude Include="src\VulKan\ImageView.h" />
-    <ClInclude Include="src\VulKan\Instance.h" />
-    <ClInclude Include="src\VulKan\PipelineLayout.h" />
-    <ClInclude Include="src\VulKan\RenderPass.h" />
-    <ClInclude Include="src\VulKan\Sampler.h" />
-    <ClInclude Include="src\VulKan\Semaphore.h" />
-    <ClInclude Include="src\VulKan\ShaderModule.h" />
+    <ClInclude Include="src\imgui\imconfig.h" />
+    <ClInclude Include="src\imgui\imgui.h" />
+    <ClInclude Include="src\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="src\imgui\imgui_impl_vulkan.h" />
+    <ClInclude Include="src\imgui\imgui_internal.h" />
+    <ClInclude Include="src\imgui\imstb_rectpack.h" />
+    <ClInclude Include="src\imgui\imstb_textedit.h" />
+    <ClInclude Include="src\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\ModelViewController.hpp" />
+    <ClInclude Include="src\Options.hpp" />
+    <ClInclude Include="src\RayTracer.hpp" />
+    <ClInclude Include="src\SceneList.hpp" />
+    <ClInclude Include="src\UserInterface.hpp" />
+    <ClInclude Include="src\Utilities\Console.hpp" />
+    <ClInclude Include="src\Utilities\Exception.hpp" />
+    <ClInclude Include="src\Utilities\Glm.hpp" />
+    <ClInclude Include="src\Utilities\StbImage.hpp" />
+    <ClInclude Include="src\VulKan\ApplicationVulkan.hpp" />
+    <ClInclude Include="src\VulKan\Buffer.hpp" />
+    <ClInclude Include="src\VulKan\CommandBuffers.hpp" />
+    <ClInclude Include="src\VulKan\CommandPool.hpp" />
+    <ClInclude Include="src\VulKan\DebugUtils.hpp" />
+    <ClInclude Include="src\VulKan\DebugUtilsMessenger.hpp" />
+    <ClInclude Include="src\VulKan\DepthBuffer.hpp" />
+    <ClInclude Include="src\VulKan\DescriptorBinding.hpp" />
+    <ClInclude Include="src\VulKan\DescriptorPool.hpp" />
+    <ClInclude Include="src\VulKan\DescriptorSetLayout.hpp" />
+    <ClInclude Include="src\VulKan\DescriptorSetManager.hpp" />
+    <ClInclude Include="src\VulKan\DescriptorSets.hpp" />
+    <ClInclude Include="src\VulKan\Device.hpp" />
+    <ClInclude Include="src\VulKan\DeviceMemory.hpp" />
+    <ClInclude Include="src\VulKan\Fence.hpp" />
+    <ClInclude Include="src\VulKan\FrameBuffer.hpp" />
+    <ClInclude Include="src\VulKan\GraphicsPipeline.hpp" />
+    <ClInclude Include="src\VulKan\Image.hpp" />
+    <ClInclude Include="src\VulKan\ImageView.hpp" />
+    <ClInclude Include="src\VulKan\Instance.hpp" />
+    <ClInclude Include="src\VulKan\PipelineLayout.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\AccelerationStructure.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\Application.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\BottomLevelAccelerationStructure.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\BottomLevelGeometry.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\DeviceProcedures.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\RayTracingPipeline.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\RayTracingProperties.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\ShaderBindingTable.hpp" />
+    <ClInclude Include="src\VulKan\RayTracing\TopLevelAccelerationStructure.hpp" />
+    <ClInclude Include="src\VulKan\RenderPass.hpp" />
+    <ClInclude Include="src\VulKan\Sampler.hpp" />
+    <ClInclude Include="src\VulKan\Semaphore.hpp" />
     <ClInclude Include="src\VulKan\BufferUtil.hpp" />
     <ClInclude Include="src\VulKan\Enumerate.hpp" />
     <ClInclude Include="src\VulKan\ImageMemoryBarrier.hpp" />
     <ClInclude Include="src\VulKan\RayTracing\AccelerationStructure.h" />
-    <ClInclude Include="src\VulKan\RayTracing\Application.h" />
-    <ClInclude Include="src\VulKan\RayTracing\BottomLevelAccelerationStructure.h" />
-    <ClInclude Include="src\VulKan\RayTracing\DeviceProcedures.h" />
-    <ClInclude Include="src\VulKan\RayTracing\RayTracingPipeline.h" />
-    <ClInclude Include="src\VulKan\RayTracing\RayTracingProperties.h" />
-    <ClInclude Include="src\VulKan\RayTracing\ShaderBindingTable.h" />
-    <ClInclude Include="src\Options.h" />
-    <ClInclude Include="src\RayTracer.h" />
-    <ClInclude Include="src\SceneList.h" />
-    <ClInclude Include="src\ModelViewController.h" />
     <ClInclude Include="src\UserSettings.hpp" />
-    <ClInclude Include="src\UserInterface.h" />
-    <ClInclude Include="src\VulKan\RayTracing\TopLevelAccelerationStructure.h" />
+    <ClInclude Include="src\VulKan\ShaderModule.hpp" />
     <ClInclude Include="src\VulKan\SingleTimeCommands.hpp" />
+    <ClInclude Include="src\VulKan\Strings.hpp" />
+    <ClInclude Include="src\VulKan\Surface.hpp" />
+    <ClInclude Include="src\VulKan\SwapChain.hpp" />
+    <ClInclude Include="src\VulKan\Version.hpp" />
+    <ClInclude Include="src\VulKan\Vulkan.hpp" />
+    <ClInclude Include="src\VulKan\Window.hpp" />
     <ClInclude Include="src\VulKan\WindowConfig.hpp" />
-    <ClInclude Include="src\VulKan\Strings.h" />
-    <ClInclude Include="src\VulKan\Surface.h" />
-    <ClInclude Include="src\VulKan\SwapChain.h" />
-    <ClInclude Include="src\VulKan\Version.h" />
-    <ClInclude Include="src\VulKan\Window.h" />
-    <ClInclude Include="src\Assets\Texture.h" />
-    <ClInclude Include="src\Assets\TextureImage.h" />
-    <ClInclude Include="src\Assets\UniformBuffer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\textures\2k_mars.jpg" />
+    <Image Include="src\textures\2k_moon.jpg" />
+    <Image Include="src\textures\land_ocean_ice_cloud_2048.png" />
+    <Image Include="src\textures\Vulkan.png" />
+    <Image Include="src\textures\white.png" />
+    <Image Include="src\VulKan\Vulkan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\textures\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\imgui\examples\example_glfw_wgpu\web\index.html" />
+    <None Include="src\imgui\examples\libs\emscripten\shell_minimal.html" />
+    <None Include="src\models\cube.mtl" />
+    <None Include="src\models\cube_multi.mtl" />
+    <None Include="src\shaders\Graphics.frag" />
+    <None Include="src\shaders\Graphics.frag.spv" />
+    <None Include="src\shaders\Graphics.vert" />
+    <None Include="src\shaders\Graphics.vert.spv" />
+    <None Include="src\shaders\Heatmap.glsl" />
+    <None Include="src\shaders\Material.glsl" />
+    <None Include="src\shaders\ProceduralHit.glsl" />
+    <None Include="src\shaders\Random.glsl" />
+    <None Include="src\shaders\RayPayload.glsl" />
+    <None Include="src\shaders\RayTracing.Procedural.rchit" />
+    <None Include="src\shaders\RayTracing.Procedural.rchit.spv" />
+    <None Include="src\shaders\RayTracing.Procedural.rint" />
+    <None Include="src\shaders\RayTracing.Procedural.rint.spv" />
+    <None Include="src\shaders\RayTracing.rchit" />
+    <None Include="src\shaders\RayTracing.rchit.spv" />
+    <None Include="src\shaders\RayTracing.rgen" />
+    <None Include="src\shaders\RayTracing.rgen.spv" />
+    <None Include="src\shaders\RayTracing.rmiss" />
+    <None Include="src\shaders\RayTracing.rmiss.spv" />
+    <None Include="src\shaders\Scatter.glsl" />
+    <None Include="src\shaders\UniformBufferObject.glsl" />
+    <None Include="src\shaders\Vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\fonts\Cousine-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
