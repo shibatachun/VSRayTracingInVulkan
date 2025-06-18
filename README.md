@@ -2,7 +2,7 @@
 
 ## RayTracingInVulkan-Windows
 
-> 本项目修改自 [GPSnoopy/RayTracingInVulkan](https://github.com/GPSnoopy/RayTracingInVulkan)，主要面向在 Windows 平台上不想手动配置 CMake 的开发者，提供开箱即用的体验。
+> 本项目修改自 [GPSnoopy/RayTracingInVulkan](https://github.com/GPSnoopy/RayTracingInVulkan)。
 
 ### 🎯 特性
 
